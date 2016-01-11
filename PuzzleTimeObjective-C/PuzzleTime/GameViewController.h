@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController
+@interface GameViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 
 @end

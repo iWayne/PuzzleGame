@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
+                <outlet property="collectionView" destination="U4D-p6-xBQ" id="vT9-ow-Ojs"/>
                 <outlet property="view" destination="iN0-l3-epB" id="U0X-r8-vjf"/>
             </connections>
         </placeholder>
@@ -14,7 +15,62 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdD-h9-0cv">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="177" y="341" width="46" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="showPuzzleGame:" destination="-1" eventType="touchUpInside" id="zYv-US-0Vy"/>
+                    </connections>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="U4D-p6-xBQ">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g02-um-8lE">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="UFE-dY-X9A"/>
+                        <outlet property="delegate" destination="-1" id="CnD-lI-IUb"/>
+                    </connections>
+                </collectionView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="U4D-p6-xBQ" secondAttribute="trailing" id="D8y-xf-ECQ"/>
+                <constraint firstAttribute="bottom" secondItem="U4D-p6-xBQ" secondAttribute="bottom" id="v1x-2T-719"/>
+                <constraint firstItem="U4D-p6-xBQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="v4e-aq-30X"/>
+                <constraint firstItem="U4D-p6-xBQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xc2-Hu-znM"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="KdD-h9-0cv"/>
+                    <exclude reference="U4D-p6-xBQ"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="D8y-xf-ECQ"/>
+                    <exclude reference="v1x-2T-719"/>
+                    <exclude reference="v4e-aq-30X"/>
+                    <exclude reference="xc2-Hu-znM"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="KdD-h9-0cv"/>
+                    <include reference="U4D-p6-xBQ"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="D8y-xf-ECQ"/>
+                    <include reference="v1x-2T-719"/>
+                    <include reference="v4e-aq-30X"/>
+                    <include reference="xc2-Hu-znM"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

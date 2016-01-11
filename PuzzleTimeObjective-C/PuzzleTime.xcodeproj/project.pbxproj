@@ -25,6 +25,8 @@
 		8C51DA2F1C44469A00042CD3 /* number2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA251C44469A00042CD3 /* number2.jpg */; };
 		8C51DA301C44469A00042CD3 /* number1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA261C44469A00042CD3 /* number1.jpg */; };
 		8C51DA311C44469A00042CD3 /* number0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA271C44469A00042CD3 /* number0.jpg */; };
+		8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */; };
+		8C51DA411C4461C500042CD3 /* PuzzleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,9 @@
 		8C51DA251C44469A00042CD3 /* number2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number2.jpg; sourceTree = "<group>"; };
 		8C51DA261C44469A00042CD3 /* number1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number1.jpg; sourceTree = "<group>"; };
 		8C51DA271C44469A00042CD3 /* number0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number0.jpg; sourceTree = "<group>"; };
+		8C51DA3A1C444EFC00042CD3 /* PuzzleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleCell.h; sourceTree = "<group>"; };
+		8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleCell.m; sourceTree = "<group>"; };
+		8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PuzzleCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +131,10 @@
 				8C51D9E91C44398600042CD3 /* AppDelegate.m */,
 				8C51DA181C443A0700042CD3 /* GameViewController.h */,
 				8C51DA191C443A0700042CD3 /* GameViewController.m */,
+				8C51DA3A1C444EFC00042CD3 /* PuzzleCell.h */,
+				8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */,
 				8C51DA1B1C443A1B00042CD3 /* GameView.xib */,
+				8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */,
 				8C51D9F11C44398600042CD3 /* Assets.xcassets */,
 				8C51D9F31C44398600042CD3 /* LaunchScreen.storyboard */,
 				8C51D9F61C44398600042CD3 /* Info.plist */,
@@ -285,6 +293,7 @@
 				8C51DA281C44469A00042CD3 /* number9.jpg in Resources */,
 				8C51DA2D1C44469A00042CD3 /* number4.jpg in Resources */,
 				8C51DA1C1C443A1B00042CD3 /* GameView.xib in Resources */,
+				8C51DA411C4461C500042CD3 /* PuzzleCell.xib in Resources */,
 				8C51DA2E1C44469A00042CD3 /* number3.jpg in Resources */,
 				8C51DA311C44469A00042CD3 /* number0.jpg in Resources */,
 				8C51DA2A1C44469A00042CD3 /* number7.jpg in Resources */,
@@ -319,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C51DA1A1C443A0700042CD3 /* GameViewController.m in Sources */,
+				8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */,
 				8C51D9EA1C44398600042CD3 /* AppDelegate.m in Sources */,
 				8C51D9E71C44398600042CD3 /* main.m in Sources */,
 			);
