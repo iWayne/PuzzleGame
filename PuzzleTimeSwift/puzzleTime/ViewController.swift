@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var allCenters = [CGPoint]()
     var originCenters = [CGPoint]()
     var emptySpot = CGPoint()
-    let numberOfimages = 9
+    let numberOfimages = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
