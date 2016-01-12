@@ -26,13 +26,12 @@
     _numberPerRow = (sqrt(_numberOfCells));
     _oriOrdered = [[NSMutableArray alloc] init];
     _curOrdered = [[NSMutableArray alloc] init];
-    for (int i = 0; i < _numberOfCells; i++) {
+    for (int i = 0; i < _numberOfCells - 1; i++) {
         NSString *imageName = [NSString stringWithFormat:@"%@%d%@", _imageNamePrefix, i, _imageNamePostfix];
         [_oriOrdered addObject:imageName];
-        NSLog(@"%lu", (unsigned long)_oriOrdered.count);
-        NSLog(@"%@",imageName);
     }
-    _curOrdered = [_oriOrdered copy];
+    [_oriOrdered addObject:@""];
+    _curOrdered = [NSMutableArray arrayWithArray:_oriOrdered];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -67,10 +66,27 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    PuzzleCell *cell = (PuzzleCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"Select %ld",(long)indexPath.row);
+    
+    NSIndexPath *emptySpot = [NSIndexPath indexPathForItem:[_curOrdered indexOfObject:@""] inSection:0];
+    BOOL flagForMoving = NO;
+    
+    if ((indexPath.item + 1) % _numberPerRow != 0 && (indexPath.item + 1 == emptySpot.item)) {
+        flagForMoving = YES;
+    } else if ((indexPath.item % _numberPerRow != 0) && (indexPath.item - 1 == emptySpot.item)) {
+        flagForMoving = YES;
+    } else if (indexPath.item + _numberPerRow == emptySpot.item) {
+        flagForMoving = YES;
+    } else if (indexPath.item - _numberPerRow == emptySpot.item) {
+        flagForMoving = YES;
+    }
+    
+    if (flagForMoving) {
+        NSLog(@"IndexPath: %ld, EmptyPath: %ld", (long)indexPath.item, (long)emptySpot.item);
+        NSArray *changedIndices = [NSArray arrayWithObjects:indexPath, emptySpot, nil];
+        [_curOrdered exchangeObjectAtIndex:indexPath.item withObjectAtIndex:emptySpot.item];
+        [_collectionView reloadItemsAtIndexPaths: changedIndices];
+    }
 }
-
 
 
 - (IBAction)showPuzzleGame:(UIButton *)sender {
