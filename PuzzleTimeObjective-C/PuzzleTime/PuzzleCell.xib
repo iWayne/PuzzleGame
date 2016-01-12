@@ -14,19 +14,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="173" height="181"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gn-Tb-vpo">
-                        <rect key="frame" x="65" y="80" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X4D-hd-LtN">
+                        <rect key="frame" x="0.0" y="0.0" width="173" height="181"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="X4D-hd-LtN" firstAttribute="centerX" secondItem="B37-Sh-od5" secondAttribute="centerX" id="2t2-MF-OWu"/>
+                <constraint firstItem="X4D-hd-LtN" firstAttribute="width" secondItem="B37-Sh-od5" secondAttribute="width" id="46t-dT-I1c"/>
+                <constraint firstItem="X4D-hd-LtN" firstAttribute="top" secondItem="B37-Sh-od5" secondAttribute="top" id="LR6-Du-bzO"/>
+                <constraint firstItem="X4D-hd-LtN" firstAttribute="height" secondItem="B37-Sh-od5" secondAttribute="height" id="Psq-Ub-Ry2"/>
+            </constraints>
             <size key="customSize" width="173" height="181"/>
             <connections>
-                <outlet property="cellLabel" destination="5gn-Tb-vpo" id="dKv-aL-Gut"/>
+                <outlet property="imageView" destination="X4D-hd-LtN" id="V2q-hu-gXA"/>
             </connections>
             <point key="canvasLocation" x="658.5" y="445.5"/>
         </collectionViewCell>

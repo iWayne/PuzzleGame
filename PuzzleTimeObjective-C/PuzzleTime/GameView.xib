@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
@@ -16,59 +17,57 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdD-h9-0cv">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="177" y="341" width="46" height="30"/>
-                    </variation>
-                    <connections>
-                        <action selector="showPuzzleGame:" destination="-1" eventType="touchUpInside" id="zYv-US-0Vy"/>
-                    </connections>
-                </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="U4D-p6-xBQ">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g02-um-8lE">
-                        <size key="itemSize" width="50" height="50"/>
+                    <rect key="frame" x="180" y="236" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="U4D-p6-xBQ" secondAttribute="height" multiplier="1:1" id="VNv-pe-Lnq"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="g02-um-8lE">
+                        <size key="itemSize" width="75" height="75"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                     </collectionViewFlowLayout>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="VNv-pe-Lnq"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="VNv-pe-Lnq"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="UFE-dY-X9A"/>
                         <outlet property="delegate" destination="-1" id="CnD-lI-IUb"/>
                     </connections>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="U4D-p6-xBQ" secondAttribute="trailing" id="D8y-xf-ECQ"/>
-                <constraint firstAttribute="bottom" secondItem="U4D-p6-xBQ" secondAttribute="bottom" id="v1x-2T-719"/>
-                <constraint firstItem="U4D-p6-xBQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="v4e-aq-30X"/>
-                <constraint firstItem="U4D-p6-xBQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xc2-Hu-znM"/>
+                <constraint firstAttribute="trailing" secondItem="U4D-p6-xBQ" secondAttribute="trailing" constant="20" symbolic="YES" id="LNm-fs-s4e"/>
+                <constraint firstItem="U4D-p6-xBQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="YY2-Hd-lzK"/>
+                <constraint firstItem="U4D-p6-xBQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="les-mb-uJS"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
-                    <exclude reference="KdD-h9-0cv"/>
                     <exclude reference="U4D-p6-xBQ"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="D8y-xf-ECQ"/>
-                    <exclude reference="v1x-2T-719"/>
-                    <exclude reference="v4e-aq-30X"/>
-                    <exclude reference="xc2-Hu-znM"/>
+                    <exclude reference="LNm-fs-s4e"/>
+                    <exclude reference="YY2-Hd-lzK"/>
+                    <exclude reference="les-mb-uJS"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
-                    <include reference="KdD-h9-0cv"/>
                     <include reference="U4D-p6-xBQ"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="D8y-xf-ECQ"/>
-                    <include reference="v1x-2T-719"/>
-                    <include reference="v4e-aq-30X"/>
-                    <include reference="xc2-Hu-znM"/>
+                    <include reference="LNm-fs-s4e"/>
+                    <include reference="YY2-Hd-lzK"/>
+                    <include reference="les-mb-uJS"/>
                 </mask>
             </variation>
         </view>

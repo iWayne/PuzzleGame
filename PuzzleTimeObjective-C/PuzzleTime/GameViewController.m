@@ -18,28 +18,57 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
+    [_collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
+    //Initialize
+    _imageNamePostfix = @".jpg";
+    _imageNamePrefix = @"number";
+    _numberOfCells = 9;
+    _numberPerRow = (sqrt(_numberOfCells));
+    _oriOrdered = [[NSMutableArray alloc] init];
+    _curOrdered = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _numberOfCells; i++) {
+        NSString *imageName = [NSString stringWithFormat:@"%@%d%@", _imageNamePrefix, i, _imageNamePostfix];
+        [_oriOrdered addObject:imageName];
+        NSLog(@"%lu", (unsigned long)_oriOrdered.count);
+        NSLog(@"%@",imageName);
+    }
+    _curOrdered = [_oriOrdered copy];
+}
 
-//    [self.collectionView registerClass:[PuzzleCell class] forCellWithReuseIdentifier:@"Cell"];
+- (void)viewDidAppear:(BOOL)animated{
+    
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 30;
+    return _numberOfCells;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    _widthOfCell = _collectionView.frame.size.width / (_numberPerRow + 1);
+
+    return CGSizeMake(_widthOfCell, _widthOfCell);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    NSInteger space = _widthOfCell / (_numberPerRow + 1) * 5 / 3;
+    
+    return UIEdgeInsetsMake(space, space, space, space);
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PuzzleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PuzzleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.cellLabel.text = [NSString stringWithFormat:@"cell %li",(long)indexPath.row];
+    UIImage *cellImage = [UIImage imageNamed:_curOrdered[indexPath.row]];
+    cell.imageView.image = cellImage;
     return cell;
 }
 
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     PuzzleCell *cell = (PuzzleCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    NSArray *views = [cell.contentView subviews];
-    UILabel *label = [views objectAtIndex:0];
-    NSLog(@"Select %@",label.text);
+    NSLog(@"Select %ld",(long)indexPath.row);
 }
 
 

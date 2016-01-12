@@ -11,6 +11,13 @@
 @interface GameViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property NSInteger numberOfCells;
+@property NSInteger widthOfCell;
+@property NSInteger numberPerRow;
+@property NSMutableArray* curOrdered;
+@property NSMutableArray* oriOrdered;
+@property NSString* imageNamePrefix;
+@property NSString* imageNamePostfix;
+@property BOOL isFinished;
 
 @end
