@@ -18,45 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="2" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="EHi-m2-zBm">
-                    <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="103" y="455" width="195" height="31"/>
-                    </variation>
-                    <connections>
-                        <action selector="changeDiff:" destination="-1" eventType="valueChanged" id="YN6-2D-nnZ"/>
-                    </connections>
-                </slider>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTh-vp-PJJ">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <state key="normal" title="Resume"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="170" y="286" width="60" height="30"/>
-                    </variation>
-                    <connections>
-                        <action selector="ResumeGame" destination="-1" eventType="touchUpInside" id="0ay-Dg-KBZ"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puzzle Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc1-20-1OF">
-                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="150" y="106" width="101" height="21"/>
-                    </variation>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibp-dA-ocP">
-                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="129" y="417" width="142" height="23"/>
-                    </variation>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiA-Iy-9rY">
-                    <rect key="frame" x="283" y="285" width="34" height="30"/>
+                    <rect key="frame" x="273" y="285" width="55" height="30"/>
                     <state key="normal" title="Start"/>
                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                         <rect key="frame" x="170" y="344" width="60" height="30"/>
@@ -65,33 +28,79 @@
                         <action selector="startGame" destination="-1" eventType="touchUpInside" id="OaO-JE-5X5"/>
                     </connections>
                 </button>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="2" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="EHi-m2-zBm">
+                    <rect key="frame" x="214" y="333" width="173" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="169" id="4hT-lF-BLX"/>
+                    </constraints>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="103" y="455" width="195" height="31"/>
+                    </variation>
+                    <connections>
+                        <action selector="changeDiff:" destination="-1" eventType="valueChanged" id="YN6-2D-nnZ"/>
+                    </connections>
+                </slider>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTh-vp-PJJ">
+                    <rect key="frame" x="273" y="243" width="55" height="30"/>
+                    <state key="normal" title="Resume"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="170" y="286" width="60" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="ResumeGame" destination="-1" eventType="touchUpInside" id="0ay-Dg-KBZ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Puzzle Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc1-20-1OF">
+                    <rect key="frame" x="201" y="107" width="198" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="198" id="Oqe-L4-bAX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="150" y="106" width="101" height="21"/>
+                    </variation>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Easy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibp-dA-ocP">
+                    <rect key="frame" x="247" y="410" width="106" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="129" y="417" width="142" height="23"/>
+                    </variation>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="fc1-20-1OF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="82p-uD-zjH"/>
+                <constraint firstItem="EHi-m2-zBm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Co9-U7-R2U"/>
+                <constraint firstItem="Ibp-dA-ocP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MXS-We-sjG"/>
                 <constraint firstItem="uiA-Iy-9rY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Mqa-H3-YZl"/>
+                <constraint firstItem="Ibp-dA-ocP" firstAttribute="width" secondItem="EHi-m2-zBm" secondAttribute="width" id="SLc-hM-JHG"/>
+                <constraint firstItem="vTh-vp-PJJ" firstAttribute="top" secondItem="fc1-20-1OF" secondAttribute="bottom" constant="98" id="a0C-UH-R37"/>
                 <constraint firstItem="uiA-Iy-9rY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="b0c-hY-LKv"/>
+                <constraint firstItem="uiA-Iy-9rY" firstAttribute="top" secondItem="vTh-vp-PJJ" secondAttribute="bottom" constant="12" id="gEf-Sh-Y3N"/>
+                <constraint firstItem="EHi-m2-zBm" firstAttribute="top" secondItem="uiA-Iy-9rY" secondAttribute="bottom" constant="18" id="hVf-DD-O5D"/>
+                <constraint firstItem="vTh-vp-PJJ" firstAttribute="width" secondItem="uiA-Iy-9rY" secondAttribute="width" id="orR-Sl-qpW"/>
+                <constraint firstItem="vTh-vp-PJJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yns-9p-0Ty"/>
+                <constraint firstItem="Ibp-dA-ocP" firstAttribute="top" secondItem="EHi-m2-zBm" secondAttribute="bottom" constant="47" id="zpd-5L-DcU"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="EHi-m2-zBm"/>
-                    <exclude reference="vTh-vp-PJJ"/>
-                    <exclude reference="fc1-20-1OF"/>
-                    <exclude reference="Ibp-dA-ocP"/>
-                </mask>
-            </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
+                    <include reference="uiA-Iy-9rY"/>
                     <include reference="EHi-m2-zBm"/>
                     <include reference="vTh-vp-PJJ"/>
                     <include reference="fc1-20-1OF"/>
                     <include reference="Ibp-dA-ocP"/>
-                    <include reference="uiA-Iy-9rY"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="Mqa-H3-YZl"/>
                     <include reference="b0c-hY-LKv"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="430" y="290"/>
         </view>
     </objects>
 </document>

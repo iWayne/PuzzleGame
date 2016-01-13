@@ -26,6 +26,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
+//Initilize the global value
 - (void) rebuildGame {
     //Initialize with Given value
     _imageNamePostfix = @".jpg";
@@ -34,7 +35,6 @@
         _numberPerRow = 2;
     }
     _numberOfCells = _numberPerRow * _numberPerRow;
-    
     
     //build arrays
     if (!_oriOrdered) {
@@ -56,22 +56,36 @@
 
 - (void) buildRandomItems {
     BOOL isValidRandom = NO;
+    NSInteger randLocInt = 0;
+    NSMutableArray* oriCopy = nil;
+    NSMutableArray* validOrder = nil;
+    NSMutableArray* reverRandomOrder = nil;
+    NSInteger startSearchLocInt = 0;
     
     //Avoid the reverse of the original order
     while (!isValidRandom) {
-        _curOrdered = [[NSMutableArray alloc] init];
-        NSInteger randLocInt = 0;
-        NSMutableArray* tempItems = [NSMutableArray arrayWithArray:_oriOrdered];
+        validOrder = [[NSMutableArray alloc] init];
+        randLocInt = 0;
+        oriCopy = [NSMutableArray arrayWithArray:_oriOrdered];
+        
+        //RandomItems
         for (NSInteger i = 0; i < _numberOfCells - 1; i++) {
-            randLocInt = arc4random() % [tempItems count];
-            [_curOrdered addObject:[tempItems objectAtIndex:randLocInt]];
-            [tempItems removeObjectAtIndex:randLocInt];
+            randLocInt = arc4random() % [oriCopy count];
+            [validOrder addObject:[oriCopy objectAtIndex:randLocInt]];
+            [oriCopy removeObjectAtIndex:randLocInt];
         }
-        tempItems = [NSMutableArray arrayWithArray:[[_curOrdered reverseObjectEnumerator] allObjects]];
-        if (![tempItems isEqualToArray:_oriOrdered]) {
+        
+        //Check if reverse order
+        reverRandomOrder = [NSMutableArray arrayWithArray:[[validOrder reverseObjectEnumerator] allObjects]];
+        [reverRandomOrder addObjectsFromArray:reverRandomOrder];
+        startSearchLocInt = [reverRandomOrder indexOfObject:[_oriOrdered firstObject]];
+        reverRandomOrder = [NSMutableArray arrayWithArray:[reverRandomOrder subarrayWithRange: NSMakeRange(startSearchLocInt, _numberPerRow + 1)]];
+        
+        if (![reverRandomOrder isEqualToArray:_oriOrdered]) {
             isValidRandom = YES;
         }
     }
+    _curOrdered = validOrder;
     [_curOrdered addObject:@""];
 }
 

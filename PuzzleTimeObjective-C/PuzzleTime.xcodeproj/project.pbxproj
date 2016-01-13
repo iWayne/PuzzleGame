@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8C3A1AEA1C469EA800311E07 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3A1AE81C469EA800311E07 /* StartViewController.m */; };
 		8C3A1AEB1C469EA800311E07 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AE91C469EA800311E07 /* StartViewController.xib */; };
-		8C3A1AEF1C46A1DE00311E07 /* PuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3A1AED1C46A1DE00311E07 /* PuzzleViewController.m */; };
-		8C3A1AF01C46A1DE00311E07 /* PuzzleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AEE1C46A1DE00311E07 /* PuzzleViewController.xib */; };
 		8C51D9E71C44398600042CD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51D9E61C44398600042CD3 /* main.m */; };
 		8C51D9EA1C44398600042CD3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51D9E91C44398600042CD3 /* AppDelegate.m */; };
 		8C51D9F21C44398600042CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51D9F11C44398600042CD3 /* Assets.xcassets */; };
@@ -54,9 +52,6 @@
 		8C3A1AE71C469EA800311E07 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		8C3A1AE81C469EA800311E07 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		8C3A1AE91C469EA800311E07 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
-		8C3A1AEC1C46A1DE00311E07 /* PuzzleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleViewController.h; sourceTree = "<group>"; };
-		8C3A1AED1C46A1DE00311E07 /* PuzzleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleViewController.m; sourceTree = "<group>"; };
-		8C3A1AEE1C46A1DE00311E07 /* PuzzleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PuzzleViewController.xib; sourceTree = "<group>"; };
 		8C51D9E21C44398600042CD3 /* PuzzleTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C51D9E61C44398600042CD3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8C51D9E81C44398600042CD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -152,9 +147,6 @@
 				8C51D9F31C44398600042CD3 /* LaunchScreen.storyboard */,
 				8C51D9F61C44398600042CD3 /* Info.plist */,
 				8C51D9E51C44398600042CD3 /* Supporting Files */,
-				8C3A1AEC1C46A1DE00311E07 /* PuzzleViewController.h */,
-				8C3A1AED1C46A1DE00311E07 /* PuzzleViewController.m */,
-				8C3A1AEE1C46A1DE00311E07 /* PuzzleViewController.xib */,
 			);
 			path = PuzzleTime;
 			sourceTree = "<group>";
@@ -307,7 +299,6 @@
 			files = (
 				8C51DA2C1C44469A00042CD3 /* number5.jpg in Resources */,
 				8C51DA281C44469A00042CD3 /* number9.jpg in Resources */,
-				8C3A1AF01C46A1DE00311E07 /* PuzzleViewController.xib in Resources */,
 				8C51DA2D1C44469A00042CD3 /* number4.jpg in Resources */,
 				8C51DA1C1C443A1B00042CD3 /* GameViewController.xib in Resources */,
 				8C51DA411C4461C500042CD3 /* PuzzleCell.xib in Resources */,
@@ -347,7 +338,6 @@
 			files = (
 				8C51DA1A1C443A0700042CD3 /* GameViewController.m in Sources */,
 				8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */,
-				8C3A1AEF1C46A1DE00311E07 /* PuzzleViewController.m in Sources */,
 				8C3A1AEA1C469EA800311E07 /* StartViewController.m in Sources */,
 				8C51D9EA1C44398600042CD3 /* AppDelegate.m in Sources */,
 				8C51D9E71C44398600042CD3 /* main.m in Sources */,
