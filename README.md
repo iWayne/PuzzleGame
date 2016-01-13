@@ -25,7 +25,11 @@ PuzzleGameObjective-C: the game based on Objective-C and nib file
 
 6/5. Remember the status when user quit the game (done)
 
-7. import user's image
+7. import user's image and split it
+
+8. add gesture on cells
+
+9. Create a better UI
 
 
 ###Question:
