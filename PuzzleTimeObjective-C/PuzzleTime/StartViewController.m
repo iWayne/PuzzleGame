@@ -48,9 +48,6 @@
 - (IBAction)startGame {
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
     int diffLevel = roundl([_diffSlider value]);
-    if (diffLevel > 3) {
-        diffLevel = 3;
-    }
     gameViewController.numberPerRow = diffLevel;
 //    [self presentViewController:gameViewController animated:YES completion:NULL];
     [self.navigationController pushViewController:gameViewController animated:YES];
