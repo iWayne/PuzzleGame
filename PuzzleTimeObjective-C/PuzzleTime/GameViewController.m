@@ -26,8 +26,10 @@
     //Initialize with Given value
     _imageNamePostfix = @".jpg";
     _imageNamePrefix = @"number";
-    _numberOfCells = 4;
-    _numberPerRow = (sqrt(_numberOfCells));
+    if (!_numberPerRow) {
+        _numberPerRow = 2;
+    }
+    _numberOfCells = _numberPerRow * _numberPerRow;
     
     
     //build arrays

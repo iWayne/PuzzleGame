@@ -18,6 +18,5 @@
 @property NSMutableArray* oriOrdered;
 @property NSString* imageNamePrefix;
 @property NSString* imageNamePostfix;
-@property BOOL isFinished;
 
 @end
