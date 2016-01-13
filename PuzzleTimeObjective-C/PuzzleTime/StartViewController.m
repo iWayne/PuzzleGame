@@ -24,8 +24,8 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSInteger numberPerRow = [prefs integerForKey:@"numberPerRow"];
+    NSUserDefaults *fileSystemPrep = [NSUserDefaults standardUserDefaults];
+    NSInteger numberPerRow = [fileSystemPrep integerForKey:@"numberPerRow"];
     if (!numberPerRow) {
         _resumeButton.enabled = NO;
     } else {
@@ -35,11 +35,11 @@
 
 - (IBAction)ResumeGame {
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    gameViewController.numberPerRow = [prefs integerForKey:@"numberPerRow"];
+    NSUserDefaults *fileSystemPrep = [NSUserDefaults standardUserDefaults];
     
-    gameViewController.curOrdered = [NSMutableArray arrayWithArray:[prefs objectForKey:@"curOrdered"]];
-    gameViewController.oriOrdered = [NSMutableArray arrayWithArray:[prefs objectForKey:@"oriOrdered"]];
+    gameViewController.numberPerRow = [fileSystemPrep integerForKey:@"numberPerRow"];
+    gameViewController.curItemsArray = [NSMutableArray arrayWithArray:[fileSystemPrep objectForKey:@"_curItemsArray"]];
+    gameViewController.origItemsArray = [NSMutableArray arrayWithArray:[fileSystemPrep objectForKey:@"_origItemsArray"]];
     
     //    [self presentViewController:gameViewController animated:YES completion:NULL];
     [self.navigationController pushViewController:gameViewController animated:YES];
