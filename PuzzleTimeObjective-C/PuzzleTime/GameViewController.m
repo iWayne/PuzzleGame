@@ -19,10 +19,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [_collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
-    [self resetTheGame];
+    _prefs = [NSUserDefaults standardUserDefaults];
+    [self rebuildGame];
+    [self saveData];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
-- (void) resetTheGame {
+- (void) rebuildGame {
     //Initialize with Given value
     _imageNamePostfix = @".jpg";
     _imageNamePrefix = @"number";
@@ -33,13 +37,17 @@
     
     
     //build arrays
-    [self buildOriItems];
-    [self buildRandomItems];
+    if (!_oriOrdered) {
+        [self buildOriItems];
+    }
+    if (!_curOrdered) {
+        [self buildRandomItems];
+    }
+    //TODO: Create start data
 }
 
 - (void) buildOriItems {
     _oriOrdered = [[NSMutableArray alloc] init];
-    
     for (int i = 0; i < _numberOfCells - 1; i++) {
         NSString *imageName = [NSString stringWithFormat:@"%@%d%@", _imageNamePrefix, i, _imageNamePostfix];
         [_oriOrdered addObject:imageName];
@@ -68,6 +76,19 @@
 }
 
 
+- (void) clearHistory {
+    _curOrdered = nil;
+    _oriOrdered = nil;
+    //Delete stored data
+}
+
+- (void) saveData {
+    [_prefs setObject:_curOrdered forKey:@"curOrdered"];
+    [_prefs setObject:_oriOrdered forKey:@"oriOrdered"];
+    [_prefs setInteger:_numberPerRow forKey:@"numberPerRow"];
+    NSLog(@"Store the current status");
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _numberOfCells;
 }
@@ -76,11 +97,11 @@
 //Decide the size of cells
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (!_widthOfCell) {
-        _widthOfCell = _collectionView.frame.size.width / (_numberPerRow + 1);
-    }
+//    if (!_widthOfCell) {
+    CGFloat widthOfCell = _collectionView.frame.size.width / (_numberPerRow);
+//    }
     
-    return CGSizeMake(_widthOfCell, _widthOfCell);
+    return CGSizeMake(widthOfCell, widthOfCell);
 }
 
 //layout the collectionView for top/bottom/left/right paddings
@@ -121,7 +142,9 @@
         [_curOrdered exchangeObjectAtIndex:indexPath.item withObjectAtIndex:emptySpot.item];
         [_collectionView reloadItemsAtIndexPaths: changedIndices];
     }
+    
     [self checkFinished];
+    [self saveData];
 }
 
 
@@ -134,8 +157,11 @@
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Bingo!" message:@"You make it!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"Finished. Now reload");
-            [self resetTheGame];
-            [self.collectionView reloadData];
+            _curOrdered = nil;
+            _oriOrdered = nil;
+            [self rebuildGame];
+            [_collectionView reloadData];
+            [self saveData];
             NSLog(@"Done");
         }];
         [alert addAction:ok];

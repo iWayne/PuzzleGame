@@ -11,5 +11,10 @@
 @interface StartViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISlider *diffSlider;
 @property (weak, nonatomic) IBOutlet UILabel *diffLabel;
+@property (weak, nonatomic) IBOutlet UIButton *resumeButton;
+
+@property NSInteger numberPerRow;
+@property NSMutableArray* curOrdered;
+@property NSMutableArray* oriOrdered;
 
 @end

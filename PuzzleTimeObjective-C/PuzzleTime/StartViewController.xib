@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="diffLabel" destination="Ibp-dA-ocP" id="9og-aT-5Ny"/>
                 <outlet property="diffSlider" destination="EHi-m2-zBm" id="hJx-NK-mfT"/>
+                <outlet property="resumeButton" destination="vTh-vp-PJJ" id="u31-xU-hy8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,22 +27,15 @@
                         <action selector="changeDiff:" destination="-1" eventType="valueChanged" id="YN6-2D-nnZ"/>
                     </connections>
                 </slider>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiA-Iy-9rY">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                    <state key="normal" title="Start"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="170" y="352" width="60" height="30"/>
-                    </variation>
-                    <connections>
-                        <action selector="startGame" destination="-1" eventType="touchUpInside" id="OaO-JE-5X5"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTh-vp-PJJ">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <state key="normal" title="Resume"/>
                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                         <rect key="frame" x="170" y="286" width="60" height="30"/>
                     </variation>
+                    <connections>
+                        <action selector="ResumeGame" destination="-1" eventType="touchUpInside" id="0ay-Dg-KBZ"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puzzle Game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc1-20-1OF">
                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -61,12 +55,25 @@
                         <rect key="frame" x="129" y="417" width="142" height="23"/>
                     </variation>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uiA-Iy-9rY">
+                    <rect key="frame" x="283" y="285" width="34" height="30"/>
+                    <state key="normal" title="Start"/>
+                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="170" y="344" width="60" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="startGame" destination="-1" eventType="touchUpInside" id="OaO-JE-5X5"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="uiA-Iy-9rY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Mqa-H3-YZl"/>
+                <constraint firstItem="uiA-Iy-9rY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="b0c-hY-LKv"/>
+            </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="EHi-m2-zBm"/>
-                    <exclude reference="uiA-Iy-9rY"/>
                     <exclude reference="vTh-vp-PJJ"/>
                     <exclude reference="fc1-20-1OF"/>
                     <exclude reference="Ibp-dA-ocP"/>
@@ -75,10 +82,14 @@
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="EHi-m2-zBm"/>
-                    <include reference="uiA-Iy-9rY"/>
                     <include reference="vTh-vp-PJJ"/>
                     <include reference="fc1-20-1OF"/>
                     <include reference="Ibp-dA-ocP"/>
+                    <include reference="uiA-Iy-9rY"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="Mqa-H3-YZl"/>
+                    <include reference="b0c-hY-LKv"/>
                 </mask>
             </variation>
         </view>

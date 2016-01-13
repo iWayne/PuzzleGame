@@ -23,8 +23,10 @@
     CGRect screenFrame = [UIScreen mainScreen].bounds;
     self.window = [[UIWindow alloc] initWithFrame:screenFrame];
 //    self.window.rootViewController = gameViewController;
+    
     StartViewController* startView = [StartViewController new];
-    self.window.rootViewController = startView;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:startView];
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -49,6 +51,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
 
 @end
