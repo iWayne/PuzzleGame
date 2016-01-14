@@ -190,9 +190,16 @@
 - (void) rebuildGame {
     //Initialize with Given value
     if (!_imageNamePrefix) {
-        _imageNamePostfix = @".jpg";
-        _imageNamePrefix = @"number";
+        NSData* myEncodedImageData = [_fileSystemPrep objectForKey:@"customImage0"];
+        if (myEncodedImageData == nil) {
+            _imageNamePostfix = @".jpg";
+            _imageNamePrefix = @"number";
+        } else {
+            _imageNamePrefix = @"customImage";
+            _imageNamePostfix = @"";
+        }
     }
+    
     if (!_numberPerRow) {
         _numberPerRow = 2;
     }
@@ -215,7 +222,11 @@
     NSString* imageName = nil;
     
     for (int i = 0; i < numberOfCells - 1; i++) {
-        imageName = [NSString stringWithFormat:@"%@%d%@", imageNamePrefix, i, imageNamePostfix];
+        if (![_imageNamePostfix isEqualToString:@""]) {
+            imageName = [NSString stringWithFormat:@"%@%d%@", imageNamePrefix, i, imageNamePostfix];
+        } else {
+            imageName = [NSString stringWithFormat:@"%@%d", imageNamePrefix,i];
+        }
         [originalArray addObject:imageName];
     }
     
@@ -298,8 +309,13 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (PuzzleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PuzzleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    UIImage *cellImage = [UIImage imageNamed:_curItemsArray[indexPath.row]];
-    
+    UIImage *cellImage = nil;
+    if (![_imageNamePostfix isEqualToString:@""]) {
+        cellImage = [UIImage imageNamed:_curItemsArray[indexPath.row]];
+    } else {
+        NSData* myEncodedImageData = [_fileSystemPrep objectForKey:_curItemsArray[indexPath.row]];
+        cellImage = [UIImage imageWithData:myEncodedImageData];
+    }
     cell.imageView.image = cellImage;
     return cell;
 }

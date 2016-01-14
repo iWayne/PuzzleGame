@@ -57,6 +57,9 @@
     int diffLevel = roundl([_diffSlider value]);
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.numberPerRow = diffLevel;
+    gameViewController.imageNamePrefix = @"number";
+    gameViewController.imageNamePostfix = @".jpg";
+    [_fileSystemPrep removeObjectForKey:@"customImage0"];
     [self.navigationController pushViewController:gameViewController animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -75,11 +78,10 @@
     //Start a Puzzle game
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.numberPerRow = diffLevel;
+    gameViewController.imageNamePrefix = @"customImage";
+    gameViewController.imageNamePostfix = @"";
     [self.navigationController pushViewController:gameViewController animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-//    NSData* myEncodedImageData2 = [_fileSystemPrep objectForKey:@"customImage0"];
-//    image22 = [UIImage imageWithData:myEncodedImageData2];
     
 }
 
@@ -87,28 +89,37 @@
 //TODO: Consider other size of images
 -(void)splitImage:(UIImage *)customImage numberPerRow: (NSInteger) numberPerRow UserDefaults:(NSUserDefaults *) fileSystemPrep
 {
-    if (customImage.size.height < customImage.size.width) {
-        return;
-    }
-    
-    UIImage* image22 = nil;
-    
-    CGFloat imgWidth = customImage.size.width / numberPerRow;
-    CGFloat offsetHeight = (customImage.size.height - customImage.size.width) / 2;
-    
-    for (int i = 0; i < numberPerRow * numberPerRow; i++) {
-        CGFloat x = (i % numberPerRow) * imgWidth;
-        CGFloat y = (i / numberPerRow) * imgWidth + offsetHeight;
-        CGRect imgFrame = CGRectMake(x, y, imgWidth, imgWidth);
-        CGImageRef imgRef = CGImageCreateWithImageInRect(customImage.CGImage, imgFrame);
-        UIImage *imgPart = [UIImage imageWithCGImage:imgRef];
-//        [customImages addObject:imgPart];
-//        CGImageRelease(imgRef);
-//        NSData *imageData = UIImagePNGRepresentation(imgPart);
-//        NSData *myEncodedImageData = [NSKeyedArchiver archivedDataWithRootObject:imageData];
-        NSString *imageName = [NSString stringWithFormat:@"customImage%d",i];
-        [fileSystemPrep setObject:UIImagePNGRepresentation(imgPart) forKey:imageName];
+    if (customImage.size.height >= customImage.size.width) {
         
+        //Height >= Width
+        
+        CGFloat imgWidth = customImage.size.width / numberPerRow;
+        CGFloat offsetHeight = (customImage.size.height - customImage.size.width) / 2;
+        
+        for (int i = 0; i < numberPerRow * numberPerRow; i++) {
+            CGFloat x = (i % numberPerRow) * imgWidth;
+            CGFloat y = (i / numberPerRow) * imgWidth + offsetHeight;
+            CGRect imgFrame = CGRectMake(x, y, imgWidth, imgWidth);
+            CGImageRef imgRef = CGImageCreateWithImageInRect(customImage.CGImage, imgFrame);
+            UIImage *imgPart = [UIImage imageWithCGImage:imgRef];
+            NSString *imageName = [NSString stringWithFormat:@"customImage%d",i];
+            [fileSystemPrep setObject:UIImagePNGRepresentation(imgPart) forKey:imageName];
+        }
+    } else {
+        
+        //Width > Height
+        
+        CGFloat imgWidth = customImage.size.height / numberPerRow;
+        CGFloat offsetWidth = (customImage.size.width - customImage.size.height) / 2;
+        for (int i = 0; i < numberPerRow * numberPerRow; i++) {
+            CGFloat x = (i % numberPerRow) * imgWidth + offsetWidth;
+            CGFloat y = (i / numberPerRow) * imgWidth;
+            CGRect imgFrame = CGRectMake(x, y, imgWidth, imgWidth);
+            CGImageRef imgRef = CGImageCreateWithImageInRect(customImage.CGImage, imgFrame);
+            UIImage *imgPart = [UIImage imageWithCGImage:imgRef];
+            NSString *imageName = [NSString stringWithFormat:@"customImage%d",i];
+            [fileSystemPrep setObject:UIImagePNGRepresentation(imgPart) forKey:imageName];
+        }
         
     }
 }
