@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface GameViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property NSInteger numberOfCells;

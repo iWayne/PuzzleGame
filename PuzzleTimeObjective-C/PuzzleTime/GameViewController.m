@@ -17,13 +17,112 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     [_collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     _fileSystemPrep = [NSUserDefaults standardUserDefaults];
     [self rebuildGame];
     [self saveData];
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //attach long press gesture to collectionView
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.delegate = self;
+    lpgr.delaysTouchesBegan = YES;
+    [self.collectionView addGestureRecognizer:lpgr];
+}
+
+//Long Press
+- (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+    
+    CGPoint location = [gestureRecognizer locationInView:_collectionView];
+    NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint:location];
+    
+    static UIView *snapshot = nil;
+    static NSIndexPath *sourceIndexPath = nil;
+    
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            if (indexPath) {
+                sourceIndexPath = indexPath;
+                PuzzleCell *cell = (PuzzleCell *)[_collectionView cellForItemAtIndexPath:sourceIndexPath];
+                
+                //Take a snapshot of the selected row using helper method
+                snapshot = [self customSnapshotFromView:cell];
+                
+                //Add the snapshot as subview, centered at cell's center
+                __block CGPoint center = cell.center;
+                snapshot.center = center;
+                snapshot.alpha = 0.0;
+                [self.collectionView addSubview:snapshot];
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    //Offset for gesture location.
+                    center = location;
+                    snapshot.center = center;
+                    snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                    snapshot.alpha = 0.98;
+                    
+                    //Fade out
+                    cell.alpha = 0;
+                    
+                } completion:^(BOOL finished) {
+//                    cell.hidden = YES;
+                }];
+            }
+            break;
+           
+        case UIGestureRecognizerStateChanged: {
+            CGPoint center = snapshot.center;
+            center = location;
+            snapshot.center = center;
+            
+            //Is destination valid and is it different from source?
+            if (indexPath && ![indexPath isEqual:sourceIndexPath]) {
+                
+                //update collectionView
+                [self swapTwoItemsAndSaveStatus:indexPath secondIndexPath:sourceIndexPath];
+                sourceIndexPath = indexPath;
+            }
+            break;
+        }
+            
+        default: {
+            //Clean up
+            PuzzleCell *cell = (PuzzleCell *)[_collectionView cellForItemAtIndexPath:sourceIndexPath];
+            cell.hidden = NO;
+            cell.alpha = 0;
+            [UIView animateWithDuration:0.25 animations:^{
+                
+                snapshot.center = cell.center;
+                snapshot.transform = CGAffineTransformIdentity;
+                snapshot.alpha = 0;
+                
+                //Undo fade out
+                cell.alpha = 1.0;
+                
+            } completion:^(BOOL finished) {
+                
+                sourceIndexPath = nil;
+                [snapshot removeFromSuperview];
+                snapshot = nil;
+            }];
+            break;
+        }
+            
+    }
+
+}
+
+- (void) swapTwoItemsAndSaveStatus: (NSIndexPath *) firstIndexPath secondIndexPath: (NSIndexPath *) secondeIndexPath {
+    NSLog(@"before curArray: %@", _curItemsArray);
+    NSLog(@"Swap first IndexPath: %ld, second IndexPath: %ld", (long)firstIndexPath.item, (long)secondeIndexPath.item);
+    NSArray *changedIndices = [NSArray arrayWithObjects:firstIndexPath, secondeIndexPath, nil];
+    [_curItemsArray exchangeObjectAtIndex:firstIndexPath.item withObjectAtIndex:secondeIndexPath.item];
+    [_collectionView reloadItemsAtIndexPaths:changedIndices];
+    [self checkFinished];
+    [self saveData];
+    NSLog(@"after curArray: %@", _curItemsArray);
 }
 
 //Initilize the global value
@@ -160,14 +259,9 @@
     }
     
     if (flagForMoving) {
-        NSLog(@"IndexPath: %ld, EmptyPath: %ld", (long)indexPath.item, (long)emptySpot.item);
-        NSArray *changedIndices = [NSArray arrayWithObjects:indexPath, emptySpot, nil];
-        [_curItemsArray exchangeObjectAtIndex:indexPath.item withObjectAtIndex:emptySpot.item];
-        [_collectionView reloadItemsAtIndexPaths: changedIndices];
+        [self swapTwoItemsAndSaveStatus:indexPath secondIndexPath:emptySpot];
     }
     
-    [self checkFinished];
-    [self saveData];
 }
 
 
@@ -190,6 +284,26 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+// Add this at the end of your .m file. It returns a customized snapshot of a given view.
+- (UIView *)customSnapshotFromView:(UIView *)inputView {
+    
+    // Make an image from the input view.
+    UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
+    [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // Create an image view.
+    UIView *snapshot = [[UIImageView alloc] initWithImage:image];
+    snapshot.layer.masksToBounds = NO;
+    snapshot.layer.cornerRadius = 0.0;
+    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
+    snapshot.layer.shadowRadius = 5.0;
+    snapshot.layer.shadowOpacity = 0.4;
+    
+    return snapshot;
 }
 
 @end
