@@ -50,6 +50,9 @@
     [self.view addGestureRecognizer:swipeUpGR];
     [self.view addGestureRecognizer:swipeDownGR];
     
+    //Access photo
+    
+    
 }
 
 //Swipe Gesture
@@ -186,8 +189,10 @@
 //Initilize the global value
 - (void) rebuildGame {
     //Initialize with Given value
-    _imageNamePostfix = @".jpg";
-    _imageNamePrefix = @"number";
+    if (!_imageNamePrefix) {
+        _imageNamePostfix = @".jpg";
+        _imageNamePrefix = @"number";
+    }
     if (!_numberPerRow) {
         _numberPerRow = 2;
     }

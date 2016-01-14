@@ -33,9 +33,6 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="169" id="4hT-lF-BLX"/>
                     </constraints>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="103" y="455" width="195" height="31"/>
-                    </variation>
                     <connections>
                         <action selector="changeDiff:" destination="-1" eventType="valueChanged" id="YN6-2D-nnZ"/>
                     </connections>
@@ -43,9 +40,6 @@
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTh-vp-PJJ">
                     <rect key="frame" x="273" y="243" width="55" height="30"/>
                     <state key="normal" title="Resume"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="170" y="286" width="60" height="30"/>
-                    </variation>
                     <connections>
                         <action selector="ResumeGame" destination="-1" eventType="touchUpInside" id="0ay-Dg-KBZ"/>
                     </connections>
@@ -58,18 +52,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="150" y="106" width="101" height="21"/>
-                    </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Easy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibp-dA-ocP">
                     <rect key="frame" x="247" y="410" width="106" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                        <rect key="frame" x="129" y="417" width="142" height="23"/>
-                    </variation>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
