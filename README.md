@@ -21,9 +21,11 @@ PuzzleGameObjective-C: the game based on Objective-C and nib file
 
 4. Enable restart under multi condition (done with the navi bar)
 
-5/6. Find algorithm to avoid the impossible case (almost)
+5/6. Find algorithm to avoid the impossible case (done)
 
 6/5. Remember the status when user quit the game (done)
+
+7. Add gestures (and cheating method) (done)
 
 7. import user's image
 

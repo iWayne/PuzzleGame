@@ -24,12 +24,72 @@
     [self saveData];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    //attach long press gesture to collectionView
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+    //Attach long press gesture to collectionView
+    UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.delegate = self;
-    lpgr.delaysTouchesBegan = YES;
-    [self.collectionView addGestureRecognizer:lpgr];
+    longPressGR.delegate = self;
+    longPressGR.delaysTouchesBegan = YES;
+    [_collectionView addGestureRecognizer:longPressGR];
+    
+    //Attach swipe gesture
+    UISwipeGestureRecognizer *swipeLeftGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeLeftGR.delegate = self;
+    swipeLeftGR.direction = UISwipeGestureRecognizerDirectionLeft;
+    UISwipeGestureRecognizer *swipeRightGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeRightGR.delegate = self;
+    swipeRightGR.direction = UISwipeGestureRecognizerDirectionRight;
+    UISwipeGestureRecognizer *swipeUpGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeUpGR.delegate = self;
+    swipeUpGR.direction = UISwipeGestureRecognizerDirectionUp;
+    UISwipeGestureRecognizer *swipeDownGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
+    swipeDownGR.delegate = self;
+    swipeDownGR.direction = UISwipeGestureRecognizerDirectionDown;
+    
+    [self.view addGestureRecognizer:swipeLeftGR];
+    [self.view addGestureRecognizer:swipeRightGR];
+    [self.view addGestureRecognizer:swipeUpGR];
+    [self.view addGestureRecognizer:swipeDownGR];
+    
+}
+
+//Swipe Gesture
+- (void) handleSwipeGesture: (UISwipeGestureRecognizer *) swipeGestureRecognizer {
+    
+    NSIndexPath *emptySpotIndex = [NSIndexPath indexPathForItem:[_curItemsArray indexOfObject:@""] inSection:0];
+    NSIndexPath *movedItem = nil;
+    BOOL movable = NO;
+    
+    if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"swipe left");
+        if ((emptySpotIndex.item + 1) % _numberPerRow != 0) {
+            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item + 1 inSection:0];
+            movable = YES;
+        }
+    }
+    if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        NSLog(@"swipe right");
+        if ((emptySpotIndex.item % _numberPerRow) != 0) {
+            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item - 1 inSection:0];
+            movable = YES;
+        }
+    }
+    if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionUp) {
+        NSLog(@"swipe up");
+        if ((emptySpotIndex.item + _numberPerRow) < _numberOfCells) {
+            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item + _numberPerRow inSection:0];
+            movable = YES;
+        }
+    }
+    if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionDown) {
+        NSLog(@"swipe down");
+        if ((emptySpotIndex.item - _numberPerRow) >= 0) {
+            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item - _numberPerRow inSection:0];
+            movable = YES;
+        }
+    }
+    if (movable) {
+        [self swapTwoItemsAndSaveStatus:emptySpotIndex secondIndexPath:movedItem];
+    }
 }
 
 //Long Press
@@ -115,14 +175,12 @@
 }
 
 - (void) swapTwoItemsAndSaveStatus: (NSIndexPath *) firstIndexPath secondIndexPath: (NSIndexPath *) secondeIndexPath {
-    NSLog(@"before curArray: %@", _curItemsArray);
     NSLog(@"Swap first IndexPath: %ld, second IndexPath: %ld", (long)firstIndexPath.item, (long)secondeIndexPath.item);
     NSArray *changedIndices = [NSArray arrayWithObjects:firstIndexPath, secondeIndexPath, nil];
     [_curItemsArray exchangeObjectAtIndex:firstIndexPath.item withObjectAtIndex:secondeIndexPath.item];
     [_collectionView reloadItemsAtIndexPaths:changedIndices];
     [self checkFinished];
     [self saveData];
-    NSLog(@"after curArray: %@", _curItemsArray);
 }
 
 //Initilize the global value
@@ -248,9 +306,10 @@
     BOOL flagForMoving = NO;
     NSIndexPath *emptySpot = [NSIndexPath indexPathForItem:[_curItemsArray indexOfObject:@""] inSection:0];
     
+    //Empty Spot on the right, left, down, up
     if ((indexPath.item + 1) % _numberPerRow != 0 && (indexPath.item + 1 == emptySpot.item)) {
         flagForMoving = YES;
-    } else if ((indexPath.item % _numberPerRow != 0) && (indexPath.item - 1 == emptySpot.item)) {
+    }else if ((indexPath.item % _numberPerRow != 0) && (indexPath.item - 1 == emptySpot.item)) {
         flagForMoving = YES;
     } else if (indexPath.item + _numberPerRow == emptySpot.item) {
         flagForMoving = YES;
