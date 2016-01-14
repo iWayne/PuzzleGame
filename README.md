@@ -27,7 +27,9 @@ PuzzleGameObjective-C: the game based on Objective-C and nib file
 
 7. Add gestures (and cheating method) (done)
 
-7. import user's image
+9. import user's image and split it
+
+9. Create a better UI
 
 
 ###Question:
