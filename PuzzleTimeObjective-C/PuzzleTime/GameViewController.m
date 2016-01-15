@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [_collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
     
     [self rebuildGame];
     [self saveData];
@@ -30,7 +30,7 @@
                                           initWithTarget:self action:@selector(handleLongPress:)];
     longPressGR.delegate = self;
     longPressGR.delaysTouchesBegan = YES;
-    [_collectionView addGestureRecognizer:longPressGR];
+    [self.collectionView addGestureRecognizer:longPressGR];
     
     //Attach swipe gesture
     UISwipeGestureRecognizer *swipeLeftGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeGesture:)];
@@ -58,35 +58,35 @@
 //Swipe Gesture
 - (void) handleSwipeGesture: (UISwipeGestureRecognizer *) swipeGestureRecognizer {
     
-    NSIndexPath *emptySpotIndex = [NSIndexPath indexPathForItem:[_curItemsArray indexOfObject:@""] inSection:0];
+    NSIndexPath *emptySpotIndex = [NSIndexPath indexPathForItem:[self.curItemsArray indexOfObject:@""] inSection:0];
     NSIndexPath *movedItem = nil;
     BOOL movable = NO;
     
     if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         NSLog(@"swipe left");
-        if ((emptySpotIndex.item + 1) % _numberPerRow != 0) {
+        if ((emptySpotIndex.item + 1) % self.numberPerRow != 0) {
             movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item + 1 inSection:0];
             movable = YES;
         }
     }
     if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         NSLog(@"swipe right");
-        if ((emptySpotIndex.item % _numberPerRow) != 0) {
+        if ((emptySpotIndex.item % self.numberPerRow) != 0) {
             movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item - 1 inSection:0];
             movable = YES;
         }
     }
     if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionUp) {
         NSLog(@"swipe up");
-        if ((emptySpotIndex.item + _numberPerRow) < _numberOfCells) {
-            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item + _numberPerRow inSection:0];
+        if ((emptySpotIndex.item + self.numberPerRow) < self.numberOfCells) {
+            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item + self.numberPerRow inSection:0];
             movable = YES;
         }
     }
     if (swipeGestureRecognizer.direction == UISwipeGestureRecognizerDirectionDown) {
         NSLog(@"swipe down");
-        if ((emptySpotIndex.item - _numberPerRow) >= 0) {
-            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item - _numberPerRow inSection:0];
+        if ((emptySpotIndex.item - self.numberPerRow) >= 0) {
+            movedItem = [NSIndexPath indexPathForItem:emptySpotIndex.item - self.numberPerRow inSection:0];
             movable = YES;
         }
     }
@@ -98,8 +98,8 @@
 //Long Press
 - (void) handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     
-    CGPoint location = [gestureRecognizer locationInView:_collectionView];
-    NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint:location];
+    CGPoint location = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:location];
     
     static UIView *snapshot = nil;
     static NSIndexPath *sourceIndexPath = nil;
@@ -108,7 +108,7 @@
         case UIGestureRecognizerStateBegan:
             if (indexPath) {
                 sourceIndexPath = indexPath;
-                PuzzleCell *cell = (PuzzleCell *)[_collectionView cellForItemAtIndexPath:sourceIndexPath];
+                PuzzleCell *cell = (PuzzleCell *)[self.collectionView cellForItemAtIndexPath:sourceIndexPath];
                 
                 //Take a snapshot of the selected row using helper method
                 snapshot = [cell createSnapshot];
@@ -151,7 +151,7 @@
             
         default: {
             //Clean up
-            PuzzleCell *cell = (PuzzleCell *)[_collectionView cellForItemAtIndexPath:sourceIndexPath];
+            PuzzleCell *cell = (PuzzleCell *)[self.collectionView cellForItemAtIndexPath:sourceIndexPath];
             cell.hidden = NO;
             cell.alpha = 0;
             [UIView animateWithDuration:0.25 animations:^{
@@ -179,8 +179,8 @@
 - (void) swapTwoItemsAndSaveStatus: (NSIndexPath *) firstIndexPath secondIndexPath: (NSIndexPath *) secondeIndexPath {
     NSLog(@"Swap first IndexPath: %ld, second IndexPath: %ld", (long)firstIndexPath.item, (long)secondeIndexPath.item);
     NSArray *changedIndices = [NSArray arrayWithObjects:firstIndexPath, secondeIndexPath, nil];
-    [_curItemsArray exchangeObjectAtIndex:firstIndexPath.item withObjectAtIndex:secondeIndexPath.item];
-    [_collectionView reloadItemsAtIndexPaths:changedIndices];
+    [self.curItemsArray exchangeObjectAtIndex:firstIndexPath.item withObjectAtIndex:secondeIndexPath.item];
+    [self.collectionView reloadItemsAtIndexPaths:changedIndices];
     [self checkFinished];
     [self saveData];
 }
@@ -193,37 +193,37 @@
 
 //Initilize all the global value
 - (void) rebuildGame {
-    // Don't use _ access
+    // Don't use self. access
     self.fileSystemPrep = [NSUserDefaults standardUserDefaults];
     
-    if (!_imageNamePrefix) {
-        NSData* myEncodedImageData = [_fileSystemPrep objectForKey:@"customImage0"];
+    if (!self.imageNamePrefix) {
+        NSData* myEncodedImageData = [self.fileSystemPrep objectForKey:@"customImage0"];
         if (myEncodedImageData == nil) {
-            _imageNamePostfix = @".jpg";
-            _imageNamePrefix = @"number";
+            self.imageNamePostfix = @".jpg";
+            self.imageNamePrefix = @"number";
         } else {
-            _imageNamePrefix = @"customImage";
-            _imageNamePostfix = @"";
+            self.imageNamePrefix = @"customImage";
+            self.imageNamePostfix = @"";
         }
     }
-    if ([_imageNamePostfix isEqualToString:@""]) {
-        _hasCustomImage = YES;
+    if ([self.imageNamePostfix isEqualToString:@""]) {
+        self.hasCustomImage = YES;
     } else {
-        _hasCustomImage = NO;
+        self.hasCustomImage = NO;
     }
     
-    if (!_numberPerRow) {
-        _numberPerRow = 2;
+    if (!self.numberPerRow) {
+        self.numberPerRow = 2;
     }
-    _numberOfCells = _numberPerRow * _numberPerRow;
+    self.numberOfCells = self.numberPerRow * self.numberPerRow;
     
     //build arrays
-    if (!_origItemsArray) {
-        _origItemsArray = [self createOriginalArray:_numberOfCells ImagePostfixName:_imageNamePrefix ImagePostfixName:_imageNamePostfix];
+    if (!self.origItemsArray) {
+        self.origItemsArray = [self createOriginalArray:self.numberOfCells ImagePostfixName:self.imageNamePrefix ImagePostfixName:self.imageNamePostfix];
     }
     
-    if (!_curItemsArray) {
-        _curItemsArray = [self createRandomArray:_numberOfCells OriginalArray:_origItemsArray];
+    if (!self.curItemsArray) {
+        self.curItemsArray = [self createRandomArray:self.numberOfCells OriginalArray:self.origItemsArray];
     }
     
 }
@@ -247,67 +247,71 @@
 
 //Create Random Array based on the original array
 - (NSMutableArray *) createRandomArray: (NSInteger) numberOfCells OriginalArray: (NSMutableArray *) originalArray {
-    BOOL isValidRandom = NO;
-    NSInteger randLocInt = 0;
-    NSMutableArray* oriCopy = nil;
     NSMutableArray* validOrder = nil;
-    NSMutableArray* reverRandomOrder = nil;
-    NSInteger startSearchLocInt = 0;
-    
-    //Avoid the reverse of the original order
-    while (!isValidRandom) {
-        validOrder = [[NSMutableArray alloc] init];
-        randLocInt = 0;
-        oriCopy = [NSMutableArray arrayWithArray:originalArray];
+    if (numberOfCells == 4) {
+        //TODO: something wrong with this block, find another way later
+        BOOL isValidRandom = NO;
+        NSInteger randLocInt = 0;
+        NSMutableArray* oriCopy = nil;
+        NSMutableArray* reverRandomOrder = nil;
+        NSInteger startSearchLocInt = 0;
         
-        //RandomItems
-        for (NSInteger i = 0; i < numberOfCells - 1; i++) {
-            randLocInt = arc4random() % [oriCopy count];
-            [validOrder addObject:[oriCopy objectAtIndex:randLocInt]];
-            [oriCopy removeObjectAtIndex:randLocInt];
+        //Avoid the reverse of the original order
+        while (!isValidRandom) {
+            validOrder = [[NSMutableArray alloc] init];
+            randLocInt = 0;
+            oriCopy = [NSMutableArray arrayWithArray:originalArray];
+            
+            //RandomItems
+            for (NSInteger i = 0; i < numberOfCells - 1; i++) {
+                randLocInt = arc4random() % [oriCopy count];
+                [validOrder addObject:[oriCopy objectAtIndex:randLocInt]];
+                [oriCopy removeObjectAtIndex:randLocInt];
+            }
+            
+            //Check if reverse order
+            reverRandomOrder = [NSMutableArray arrayWithArray:[[validOrder reverseObjectEnumerator] allObjects]];
+            [reverRandomOrder addObjectsFromArray:reverRandomOrder];
+            startSearchLocInt = [reverRandomOrder indexOfObject:[originalArray firstObject]];
+            reverRandomOrder = [NSMutableArray arrayWithArray:[reverRandomOrder subarrayWithRange: NSMakeRange(startSearchLocInt, numberOfCells - 1)]];
+            
+            if (![reverRandomOrder isEqualToArray:originalArray]) {
+                isValidRandom = YES;
+            }
         }
-        
-        //Check if reverse order
-        reverRandomOrder = [NSMutableArray arrayWithArray:[[validOrder reverseObjectEnumerator] allObjects]];
-        [reverRandomOrder addObjectsFromArray:reverRandomOrder];
-        startSearchLocInt = [reverRandomOrder indexOfObject:[originalArray firstObject]];
-        reverRandomOrder = [NSMutableArray arrayWithArray:[reverRandomOrder subarrayWithRange: NSMakeRange(startSearchLocInt, numberOfCells - 1)]];
-        
-        if (![reverRandomOrder isEqualToArray:originalArray]) {
-            isValidRandom = YES;
-        }
+    } else {
+        validOrder = [NSMutableArray arrayWithArray:[[originalArray reverseObjectEnumerator] allObjects]];
     }
-    
     [validOrder addObject:@""];
     return validOrder;
 }
 
 //Never called
 - (void) clearHistoryData {
-    _curItemsArray = nil;
-    _origItemsArray = nil;
-    [_fileSystemPrep removeObjectForKey:@"_curItemsArray"];
-    [_fileSystemPrep removeObjectForKey:@"_origItemsArray"];
-    [_fileSystemPrep removeObjectForKey:@"numberPerRow"];
+    self.curItemsArray = nil;
+    self.origItemsArray = nil;
+    [self.fileSystemPrep removeObjectForKey:@"self.curItemsArray"];
+    [self.fileSystemPrep removeObjectForKey:@"self.origItemsArray"];
+    [self.fileSystemPrep removeObjectForKey:@"numberPerRow"];
 }
 
 - (void) saveData {
-    [_fileSystemPrep setObject:_curItemsArray forKey:@"_curItemsArray"];
-    [_fileSystemPrep setObject:_origItemsArray forKey:@"_origItemsArray"];
-    [_fileSystemPrep setInteger:_numberPerRow forKey:@"numberPerRow"];
+    [self.fileSystemPrep setObject:self.curItemsArray forKey:@"self.curItemsArray"];
+    [self.fileSystemPrep setObject:self.origItemsArray forKey:@"self.origItemsArray"];
+    [self.fileSystemPrep setInteger:self.numberPerRow forKey:@"numberPerRow"];
     NSLog(@"Store the current status");
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _numberOfCells;
+    return self.numberOfCells;
 }
 
 
 //Decide the size of cells
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat widthOfCell = _collectionView.frame.size.width / (_numberPerRow);
+    CGFloat widthOfCell = self.collectionView.frame.size.width / (self.numberPerRow);
     return CGSizeMake(widthOfCell, widthOfCell);
 }
 
@@ -322,10 +326,10 @@
 - (PuzzleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PuzzleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     UIImage *cellImage = nil;
-    if (![_imageNamePostfix isEqualToString:@""]) {
-        cellImage = [UIImage imageNamed:_curItemsArray[indexPath.row]];
+    if (![self.imageNamePostfix isEqualToString:@""]) {
+        cellImage = [UIImage imageNamed:self.curItemsArray[indexPath.row]];
     } else {
-        NSData* myEncodedImageData = [_fileSystemPrep objectForKey:_curItemsArray[indexPath.row]];
+        NSData* myEncodedImageData = [self.fileSystemPrep objectForKey:self.curItemsArray[indexPath.row]];
         cellImage = [UIImage imageWithData:myEncodedImageData];
     }
     cell.imageView.image = cellImage;
@@ -337,16 +341,16 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     BOOL flagForMoving = NO;
-    NSIndexPath *emptySpot = [NSIndexPath indexPathForItem:[_curItemsArray indexOfObject:@""] inSection:0];
+    NSIndexPath *emptySpot = [NSIndexPath indexPathForItem:[self.curItemsArray indexOfObject:@""] inSection:0];
     
     //Empty Spot on the right, left, down, up
-    if ((indexPath.item + 1) % _numberPerRow != 0 && (indexPath.item + 1 == emptySpot.item)) {
+    if ((indexPath.item + 1) % self.numberPerRow != 0 && (indexPath.item + 1 == emptySpot.item)) {
         flagForMoving = YES;
-    }else if ((indexPath.item % _numberPerRow != 0) && (indexPath.item - 1 == emptySpot.item)) {
+    }else if ((indexPath.item % self.numberPerRow != 0) && (indexPath.item - 1 == emptySpot.item)) {
         flagForMoving = YES;
-    } else if (indexPath.item + _numberPerRow == emptySpot.item) {
+    } else if (indexPath.item + self.numberPerRow == emptySpot.item) {
         flagForMoving = YES;
-    } else if (indexPath.item - _numberPerRow == emptySpot.item) {
+    } else if (indexPath.item - self.numberPerRow == emptySpot.item) {
         flagForMoving = YES;
     }
     
@@ -360,17 +364,17 @@
 //Check if user solve the puzzle
 
 - (void) checkFinished {
-    NSMutableArray* tempItems = [NSMutableArray arrayWithArray:_origItemsArray];
+    NSMutableArray* tempItems = [NSMutableArray arrayWithArray:self.origItemsArray];
     [tempItems addObject:@""];
     
-    if ([tempItems isEqualToArray:_curItemsArray]) {
+    if ([tempItems isEqualToArray:self.curItemsArray]) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Bingo!" message:@"You make it!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"Finished. Now reload");
-            _curItemsArray = nil;
-            _origItemsArray = nil;
+            self.curItemsArray = nil;
+            self.origItemsArray = nil;
             [self rebuildGame];
-            [_collectionView reloadData];
+            [self.collectionView reloadData];
             [self saveData];
             NSLog(@"Done");
         }];
