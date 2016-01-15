@@ -313,7 +313,7 @@
 - (PuzzleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PuzzleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     UIImage *cellImage = nil;
-    if (!_hasCustomImage) {
+    if (![_imageNamePostfix isEqualToString:@""]) {
         cellImage = [UIImage imageNamed:_curItemsArray[indexPath.row]];
     } else {
         NSData* myEncodedImageData = [_fileSystemPrep objectForKey:_curItemsArray[indexPath.row]];

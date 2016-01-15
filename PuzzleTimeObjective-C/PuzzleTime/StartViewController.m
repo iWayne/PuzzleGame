@@ -61,6 +61,7 @@
     gameViewController.numberPerRow = diffLevel;
     gameViewController.imageNamePrefix = @"number";
     gameViewController.imageNamePostfix = @".jpg";
+    gameViewController.hasCustomImage = NO;
     [_fileSystemPrep removeObjectForKey:@"customImage0"];
     [self.navigationController pushViewController:gameViewController animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -82,6 +83,7 @@
     gameViewController.numberPerRow = diffLevel;
     gameViewController.imageNamePrefix = @"customImage";
     gameViewController.imageNamePostfix = @"";
+    gameViewController.hasCustomImage = YES;
     [self.navigationController pushViewController:gameViewController animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     
