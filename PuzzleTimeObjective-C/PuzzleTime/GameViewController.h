@@ -18,6 +18,7 @@
 @property NSString* imageNamePrefix;
 @property NSString* imageNamePostfix;
 @property NSUserDefaults *fileSystemPrep;
+@property BOOL hasCustomImage;
 
 
 @end

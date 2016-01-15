@@ -36,8 +36,6 @@
 		8C51DA311C44469A00042CD3 /* number0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA271C44469A00042CD3 /* number0.jpg */; };
 		8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */; };
 		8C51DA411C4461C500042CD3 /* PuzzleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */; };
-		8CE162861C483C3B00E5A53F /* ImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE162841C483C3B00E5A53F /* ImagePickerController.m */; };
-		8CE162871C483C3B00E5A53F /* ImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE162851C483C3B00E5A53F /* ImagePickerController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,9 +95,6 @@
 		8C51DA3A1C444EFC00042CD3 /* PuzzleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleCell.h; sourceTree = "<group>"; };
 		8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleCell.m; sourceTree = "<group>"; };
 		8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PuzzleCell.xib; sourceTree = "<group>"; };
-		8CE162831C483C3B00E5A53F /* ImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerController.h; sourceTree = "<group>"; };
-		8CE162841C483C3B00E5A53F /* ImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerController.m; sourceTree = "<group>"; };
-		8CE162851C483C3B00E5A53F /* ImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImagePickerController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,9 +161,6 @@
 				8C51D9F31C44398600042CD3 /* LaunchScreen.storyboard */,
 				8C51D9F61C44398600042CD3 /* Info.plist */,
 				8C51D9E51C44398600042CD3 /* Supporting Files */,
-				8CE162831C483C3B00E5A53F /* ImagePickerController.h */,
-				8CE162841C483C3B00E5A53F /* ImagePickerController.m */,
-				8CE162851C483C3B00E5A53F /* ImagePickerController.xib */,
 			);
 			path = PuzzleTime;
 			sourceTree = "<group>";
@@ -329,7 +321,6 @@
 				8C3A1AFD1C46F87400311E07 /* number11.jpg in Resources */,
 				8C51DA2C1C44469A00042CD3 /* number5.jpg in Resources */,
 				8C51DA281C44469A00042CD3 /* number9.jpg in Resources */,
-				8CE162871C483C3B00E5A53F /* ImagePickerController.xib in Resources */,
 				8C3A1AFE1C46F87400311E07 /* number10.jpg in Resources */,
 				8C51DA2D1C44469A00042CD3 /* number4.jpg in Resources */,
 				8C51DA1C1C443A1B00042CD3 /* GameViewController.xib in Resources */,
@@ -373,7 +364,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CE162861C483C3B00E5A53F /* ImagePickerController.m in Sources */,
 				8C51DA1A1C443A0700042CD3 /* GameViewController.m in Sources */,
 				8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */,
 				8C3A1AEA1C469EA800311E07 /* StartViewController.m in Sources */,

@@ -8,7 +8,6 @@
 
 #import "StartViewController.h"
 #import "GameViewController.h"
-#import "ImagePickerController.h"
 
 @interface StartViewController ()
 
@@ -33,6 +32,7 @@
     }
 }
 
+//Resume the previous game
 - (IBAction)ResumeGame {
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
     
@@ -44,6 +44,7 @@
     [self.navigationController pushViewController:gameViewController animated:YES];
 }
 
+//Start a new game
 - (IBAction)startGame {
     //Pick a pthoto from user's library
     UIImagePickerController *imagePickerController = [UIImagePickerController new];
@@ -53,6 +54,7 @@
 }
 
 
+//If user cancel to import the image, use the default ones and goto Game view
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     int diffLevel = roundl([_diffSlider value]);
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
@@ -86,7 +88,7 @@
 }
 
 
-//TODO: Consider other size of images
+//Split images and store with the key value "customImage#"
 -(void)splitImage:(UIImage *)customImage numberPerRow: (NSInteger) numberPerRow UserDefaults:(NSUserDefaults *) fileSystemPrep
 {
     if (customImage.size.height >= customImage.size.width) {
@@ -125,6 +127,7 @@
 }
 
 
+//Show the difficulty level in the label
 - (IBAction)changeDiff:(UISlider *)sender {
     // Set the label text to the value of the slider as it changes
     int discreteValue = roundl([sender value]);

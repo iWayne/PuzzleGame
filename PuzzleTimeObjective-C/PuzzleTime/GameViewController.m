@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     [_collectionView registerNib:[UINib nibWithNibName:@"PuzzleCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
-    _fileSystemPrep = [NSUserDefaults standardUserDefaults];
+    
     [self rebuildGame];
     [self saveData];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -50,7 +50,6 @@
     [self.view addGestureRecognizer:swipeUpGR];
     [self.view addGestureRecognizer:swipeDownGR];
     
-    //Access photo
     
     
 }
@@ -186,9 +185,10 @@
     [self saveData];
 }
 
-//Initilize the global value
+//Initilize all the global value
 - (void) rebuildGame {
-    //Initialize with Given value
+    _fileSystemPrep = [NSUserDefaults standardUserDefaults];
+    
     if (!_imageNamePrefix) {
         NSData* myEncodedImageData = [_fileSystemPrep objectForKey:@"customImage0"];
         if (myEncodedImageData == nil) {
@@ -198,6 +198,11 @@
             _imageNamePrefix = @"customImage";
             _imageNamePostfix = @"";
         }
+    }
+    if ([_imageNamePostfix isEqualToString:@""]) {
+        _hasCustomImage = NO;
+    } else {
+        _hasCustomImage = YES;
     }
     
     if (!_numberPerRow) {
@@ -222,7 +227,7 @@
     NSString* imageName = nil;
     
     for (int i = 0; i < numberOfCells - 1; i++) {
-        if (![_imageNamePostfix isEqualToString:@""]) {
+        if (![imageNamePostfix isEqualToString:@""]) {
             imageName = [NSString stringWithFormat:@"%@%d%@", imageNamePrefix, i, imageNamePostfix];
         } else {
             imageName = [NSString stringWithFormat:@"%@%d", imageNamePrefix,i];
@@ -270,7 +275,7 @@
     return validOrder;
 }
 
-
+//Never called
 - (void) clearHistoryData {
     _curItemsArray = nil;
     _origItemsArray = nil;
@@ -293,9 +298,7 @@
 
 //Decide the size of cells
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     CGFloat widthOfCell = _collectionView.frame.size.width / (_numberPerRow);
-    
     return CGSizeMake(widthOfCell, widthOfCell);
 }
 
@@ -306,11 +309,11 @@
 }
 
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+//Build and return puzzle cells
 - (PuzzleCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PuzzleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     UIImage *cellImage = nil;
-    if (![_imageNamePostfix isEqualToString:@""]) {
+    if (!_hasCustomImage) {
         cellImage = [UIImage imageNamed:_curItemsArray[indexPath.row]];
     } else {
         NSData* myEncodedImageData = [_fileSystemPrep objectForKey:_curItemsArray[indexPath.row]];
@@ -321,7 +324,7 @@
 }
 
 
-//Move the cell with the empty one
+// Move the tapped cell if it's legal
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     BOOL flagForMoving = NO;
@@ -346,6 +349,7 @@
 
 
 //Check if user solve the puzzle
+
 - (void) checkFinished {
     NSMutableArray* tempItems = [NSMutableArray arrayWithArray:_origItemsArray];
     [tempItems addObject:@""];
@@ -366,7 +370,7 @@
     }
 }
 
-// Add this at the end of your .m file. It returns a customized snapshot of a given view.
+// It returns a customized snapshot of a given view.
 - (UIView *)customSnapshotFromView:(UIView *)inputView {
     
     // Make an image from the input view.
