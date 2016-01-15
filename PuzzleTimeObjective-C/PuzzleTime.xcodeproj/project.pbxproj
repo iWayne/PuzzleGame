@@ -7,15 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C25DE8D1C4972E800BAEE7A /* UIView+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C25DE8C1C4972E800BAEE7A /* UIView+Snapshot.m */; };
 		8C3A1AEA1C469EA800311E07 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3A1AE81C469EA800311E07 /* StartViewController.m */; };
 		8C3A1AEB1C469EA800311E07 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AE91C469EA800311E07 /* StartViewController.xib */; };
-		8C3A1AF81C46F87400311E07 /* number16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF11C46F87400311E07 /* number16.jpg */; };
-		8C3A1AF91C46F87400311E07 /* number15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF21C46F87400311E07 /* number15.jpg */; };
-		8C3A1AFA1C46F87400311E07 /* number14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF31C46F87400311E07 /* number14.jpg */; };
-		8C3A1AFB1C46F87400311E07 /* number13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF41C46F87400311E07 /* number13.jpg */; };
-		8C3A1AFC1C46F87400311E07 /* number12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF51C46F87400311E07 /* number12.jpg */; };
-		8C3A1AFD1C46F87400311E07 /* number11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF61C46F87400311E07 /* number11.jpg */; };
-		8C3A1AFE1C46F87400311E07 /* number10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C3A1AF71C46F87400311E07 /* number10.jpg */; };
 		8C51D9E71C44398600042CD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51D9E61C44398600042CD3 /* main.m */; };
 		8C51D9EA1C44398600042CD3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51D9E91C44398600042CD3 /* AppDelegate.m */; };
 		8C51D9F21C44398600042CD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C51D9F11C44398600042CD3 /* Assets.xcassets */; };
@@ -24,16 +18,6 @@
 		8C51DA0B1C44398600042CD3 /* PuzzleTimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51DA0A1C44398600042CD3 /* PuzzleTimeUITests.m */; };
 		8C51DA1A1C443A0700042CD3 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51DA191C443A0700042CD3 /* GameViewController.m */; };
 		8C51DA1C1C443A1B00042CD3 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA1B1C443A1B00042CD3 /* GameViewController.xib */; };
-		8C51DA281C44469A00042CD3 /* number9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA1E1C44469A00042CD3 /* number9.jpg */; };
-		8C51DA291C44469A00042CD3 /* number8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA1F1C44469A00042CD3 /* number8.jpg */; };
-		8C51DA2A1C44469A00042CD3 /* number7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA201C44469A00042CD3 /* number7.jpg */; };
-		8C51DA2B1C44469A00042CD3 /* number6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA211C44469A00042CD3 /* number6.jpg */; };
-		8C51DA2C1C44469A00042CD3 /* number5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA221C44469A00042CD3 /* number5.jpg */; };
-		8C51DA2D1C44469A00042CD3 /* number4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA231C44469A00042CD3 /* number4.jpg */; };
-		8C51DA2E1C44469A00042CD3 /* number3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA241C44469A00042CD3 /* number3.jpg */; };
-		8C51DA2F1C44469A00042CD3 /* number2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA251C44469A00042CD3 /* number2.jpg */; };
-		8C51DA301C44469A00042CD3 /* number1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA261C44469A00042CD3 /* number1.jpg */; };
-		8C51DA311C44469A00042CD3 /* number0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA271C44469A00042CD3 /* number0.jpg */; };
 		8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */; };
 		8C51DA411C4461C500042CD3 /* PuzzleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */; };
 /* End PBXBuildFile section */
@@ -56,16 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C25DE8B1C4972E800BAEE7A /* UIView+Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Snapshot.h"; sourceTree = "<group>"; };
+		8C25DE8C1C4972E800BAEE7A /* UIView+Snapshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Snapshot.m"; sourceTree = "<group>"; };
 		8C3A1AE71C469EA800311E07 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		8C3A1AE81C469EA800311E07 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		8C3A1AE91C469EA800311E07 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
-		8C3A1AF11C46F87400311E07 /* number16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number16.jpg; sourceTree = "<group>"; };
-		8C3A1AF21C46F87400311E07 /* number15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number15.jpg; sourceTree = "<group>"; };
-		8C3A1AF31C46F87400311E07 /* number14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number14.jpg; sourceTree = "<group>"; };
-		8C3A1AF41C46F87400311E07 /* number13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number13.jpg; sourceTree = "<group>"; };
-		8C3A1AF51C46F87400311E07 /* number12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number12.jpg; sourceTree = "<group>"; };
-		8C3A1AF61C46F87400311E07 /* number11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number11.jpg; sourceTree = "<group>"; };
-		8C3A1AF71C46F87400311E07 /* number10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number10.jpg; sourceTree = "<group>"; };
 		8C51D9E21C44398600042CD3 /* PuzzleTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C51D9E61C44398600042CD3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8C51D9E81C44398600042CD3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -82,16 +61,6 @@
 		8C51DA181C443A0700042CD3 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		8C51DA191C443A0700042CD3 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		8C51DA1B1C443A1B00042CD3 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
-		8C51DA1E1C44469A00042CD3 /* number9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number9.jpg; sourceTree = "<group>"; };
-		8C51DA1F1C44469A00042CD3 /* number8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number8.jpg; sourceTree = "<group>"; };
-		8C51DA201C44469A00042CD3 /* number7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number7.jpg; sourceTree = "<group>"; };
-		8C51DA211C44469A00042CD3 /* number6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number6.jpg; sourceTree = "<group>"; };
-		8C51DA221C44469A00042CD3 /* number5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number5.jpg; sourceTree = "<group>"; };
-		8C51DA231C44469A00042CD3 /* number4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number4.jpg; sourceTree = "<group>"; };
-		8C51DA241C44469A00042CD3 /* number3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number3.jpg; sourceTree = "<group>"; };
-		8C51DA251C44469A00042CD3 /* number2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number2.jpg; sourceTree = "<group>"; };
-		8C51DA261C44469A00042CD3 /* number1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number1.jpg; sourceTree = "<group>"; };
-		8C51DA271C44469A00042CD3 /* number0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = number0.jpg; sourceTree = "<group>"; };
 		8C51DA3A1C444EFC00042CD3 /* PuzzleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleCell.h; sourceTree = "<group>"; };
 		8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleCell.m; sourceTree = "<group>"; };
 		8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PuzzleCell.xib; sourceTree = "<group>"; };
@@ -145,7 +114,6 @@
 		8C51D9E41C44398600042CD3 /* PuzzleTime */ = {
 			isa = PBXGroup;
 			children = (
-				8C51DA1D1C44468700042CD3 /* numberImages */,
 				8C51D9E81C44398600042CD3 /* AppDelegate.h */,
 				8C51D9E91C44398600042CD3 /* AppDelegate.m */,
 				8C3A1AE71C469EA800311E07 /* StartViewController.h */,
@@ -154,6 +122,8 @@
 				8C51DA191C443A0700042CD3 /* GameViewController.m */,
 				8C51DA3A1C444EFC00042CD3 /* PuzzleCell.h */,
 				8C51DA3B1C444EFC00042CD3 /* PuzzleCell.m */,
+				8C25DE8B1C4972E800BAEE7A /* UIView+Snapshot.h */,
+				8C25DE8C1C4972E800BAEE7A /* UIView+Snapshot.m */,
 				8C51DA1B1C443A1B00042CD3 /* GameViewController.xib */,
 				8C51DA3F1C4452E400042CD3 /* PuzzleCell.xib */,
 				8C3A1AE91C469EA800311E07 /* StartViewController.xib */,
@@ -189,30 +159,6 @@
 				8C51DA0C1C44398600042CD3 /* Info.plist */,
 			);
 			path = PuzzleTimeUITests;
-			sourceTree = "<group>";
-		};
-		8C51DA1D1C44468700042CD3 /* numberImages */ = {
-			isa = PBXGroup;
-			children = (
-				8C3A1AF11C46F87400311E07 /* number16.jpg */,
-				8C3A1AF21C46F87400311E07 /* number15.jpg */,
-				8C3A1AF31C46F87400311E07 /* number14.jpg */,
-				8C3A1AF41C46F87400311E07 /* number13.jpg */,
-				8C3A1AF51C46F87400311E07 /* number12.jpg */,
-				8C3A1AF61C46F87400311E07 /* number11.jpg */,
-				8C3A1AF71C46F87400311E07 /* number10.jpg */,
-				8C51DA1E1C44469A00042CD3 /* number9.jpg */,
-				8C51DA1F1C44469A00042CD3 /* number8.jpg */,
-				8C51DA201C44469A00042CD3 /* number7.jpg */,
-				8C51DA211C44469A00042CD3 /* number6.jpg */,
-				8C51DA221C44469A00042CD3 /* number5.jpg */,
-				8C51DA231C44469A00042CD3 /* number4.jpg */,
-				8C51DA241C44469A00042CD3 /* number3.jpg */,
-				8C51DA251C44469A00042CD3 /* number2.jpg */,
-				8C51DA261C44469A00042CD3 /* number1.jpg */,
-				8C51DA271C44469A00042CD3 /* number0.jpg */,
-			);
-			name = numberImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,27 +264,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C3A1AFD1C46F87400311E07 /* number11.jpg in Resources */,
-				8C51DA2C1C44469A00042CD3 /* number5.jpg in Resources */,
-				8C51DA281C44469A00042CD3 /* number9.jpg in Resources */,
-				8C3A1AFE1C46F87400311E07 /* number10.jpg in Resources */,
-				8C51DA2D1C44469A00042CD3 /* number4.jpg in Resources */,
 				8C51DA1C1C443A1B00042CD3 /* GameViewController.xib in Resources */,
 				8C51DA411C4461C500042CD3 /* PuzzleCell.xib in Resources */,
-				8C51DA2E1C44469A00042CD3 /* number3.jpg in Resources */,
-				8C3A1AF91C46F87400311E07 /* number15.jpg in Resources */,
-				8C3A1AFB1C46F87400311E07 /* number13.jpg in Resources */,
-				8C51DA311C44469A00042CD3 /* number0.jpg in Resources */,
-				8C51DA2A1C44469A00042CD3 /* number7.jpg in Resources */,
-				8C51DA2B1C44469A00042CD3 /* number6.jpg in Resources */,
-				8C51DA2F1C44469A00042CD3 /* number2.jpg in Resources */,
-				8C51DA301C44469A00042CD3 /* number1.jpg in Resources */,
-				8C3A1AF81C46F87400311E07 /* number16.jpg in Resources */,
 				8C51D9F51C44398600042CD3 /* LaunchScreen.storyboard in Resources */,
-				8C3A1AFC1C46F87400311E07 /* number12.jpg in Resources */,
 				8C51D9F21C44398600042CD3 /* Assets.xcassets in Resources */,
-				8C3A1AFA1C46F87400311E07 /* number14.jpg in Resources */,
-				8C51DA291C44469A00042CD3 /* number8.jpg in Resources */,
 				8C3A1AEB1C469EA800311E07 /* StartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C25DE8D1C4972E800BAEE7A /* UIView+Snapshot.m in Sources */,
 				8C51DA1A1C443A0700042CD3 /* GameViewController.m in Sources */,
 				8C51DA3C1C444EFC00042CD3 /* PuzzleCell.m in Sources */,
 				8C3A1AEA1C469EA800311E07 /* StartViewController.m in Sources */,

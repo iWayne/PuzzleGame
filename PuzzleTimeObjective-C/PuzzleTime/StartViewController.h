@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StartViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationBarDelegate>
+@interface StartViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *diffSlider;
 @property (weak, nonatomic) IBOutlet UILabel *diffLabel;
 @property (weak, nonatomic) IBOutlet UIButton *resumeButton;

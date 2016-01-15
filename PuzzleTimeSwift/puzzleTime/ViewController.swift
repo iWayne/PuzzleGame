@@ -94,10 +94,10 @@ class ViewController: UIViewController {
     }
     
     func swapImage(myTouch: UITouch, tapCen: CGPoint) {
-        //UIView.beginAnimations(nil, context: nil)
-        //UIView.setAnimationDuration(0.15)
+        
         UIView.animateWithDuration(0.15) { () -> Void in
-            myTouch.view?.center = self.emptySpot
+//            myTouch.view?.center = self.emptySpot
+            self.moveViewToEmptySpot(myTouch.view!, emptySpot: self.emptySpot)
         }
         
         //UIView.commitAnimations()
@@ -111,6 +111,10 @@ class ViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    
+    func moveViewToEmptySpot(myView: UIView, emptySpot: CGPoint) {
+        myView.center = emptySpot
     }
     
     func checkStatus() -> Bool {

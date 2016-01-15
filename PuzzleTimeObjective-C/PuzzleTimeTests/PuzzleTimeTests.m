@@ -7,6 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "GameViewController.h"
+
+@interface GameViewController ()
+
+- (void) swapTwoItems: (NSIndexPath *) firstIndexPath secondIndexPath: (NSIndexPath *) secondeIndexPath curArray: (NSMutableArray *) curArray;
+
+@end
 
 @interface PuzzleTimeTests : XCTestCase
 
@@ -27,6 +34,12 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    GameViewController *gvc = [GameViewController new];
+    NSIndexPath *firstPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    NSIndexPath *secondPath = [NSIndexPath indexPathForItem:1 inSection:0];
+    NSMutableArray *curArray = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", nil];
+    [gvc swapTwoItems:firstPath secondIndexPath:secondPath curArray:curArray];
+    XCTAssertTrue([[curArray objectAtIndex:0] isEqualToString:@"2"]);
 }
 
 - (void)testPerformanceExample {

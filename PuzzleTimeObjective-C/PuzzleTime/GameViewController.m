@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "PuzzleCell.h"
+#import "UIView+Snapshot.h"
 
 @interface GameViewController ()
 
@@ -110,7 +111,7 @@
                 PuzzleCell *cell = (PuzzleCell *)[_collectionView cellForItemAtIndexPath:sourceIndexPath];
                 
                 //Take a snapshot of the selected row using helper method
-                snapshot = [self customSnapshotFromView:cell];
+                snapshot = [cell createSnapshot];
                 
                 //Add the snapshot as subview, centered at cell's center
                 __block CGPoint center = cell.center;
@@ -129,7 +130,6 @@
                     cell.alpha = 0;
                     
                 } completion:^(BOOL finished) {
-//                    cell.hidden = YES;
                 }];
             }
             break;
@@ -185,9 +185,16 @@
     [self saveData];
 }
 
+
+//Only used to be fimiliar with Unit Test
+- (void) swapTwoItems: (NSIndexPath *) firstIndexPath secondIndexPath: (NSIndexPath *) secondeIndexPath curArray: (NSMutableArray *) curArray {
+    [curArray exchangeObjectAtIndex:firstIndexPath.item withObjectAtIndex:secondeIndexPath.item];
+}
+
 //Initilize all the global value
 - (void) rebuildGame {
-    _fileSystemPrep = [NSUserDefaults standardUserDefaults];
+    // Don't use _ access
+    self.fileSystemPrep = [NSUserDefaults standardUserDefaults];
     
     if (!_imageNamePrefix) {
         NSData* myEncodedImageData = [_fileSystemPrep objectForKey:@"customImage0"];
@@ -200,9 +207,9 @@
         }
     }
     if ([_imageNamePostfix isEqualToString:@""]) {
-        _hasCustomImage = NO;
-    } else {
         _hasCustomImage = YES;
+    } else {
+        _hasCustomImage = NO;
     }
     
     if (!_numberPerRow) {
@@ -291,6 +298,8 @@
     NSLog(@"Store the current status");
 }
 
+#pragma mark - UICollectionViewDelegate
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _numberOfCells;
 }
@@ -368,26 +377,6 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }
-}
-
-// It returns a customized snapshot of a given view.
-- (UIView *)customSnapshotFromView:(UIView *)inputView {
-    
-    // Make an image from the input view.
-    UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
-    [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    // Create an image view.
-    UIView *snapshot = [[UIImageView alloc] initWithImage:image];
-    snapshot.layer.masksToBounds = NO;
-    snapshot.layer.cornerRadius = 0.0;
-    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
-    snapshot.layer.shadowRadius = 5.0;
-    snapshot.layer.shadowOpacity = 0.4;
-    
-    return snapshot;
 }
 
 @end
