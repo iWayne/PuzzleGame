@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import puzzleTime
 
 class puzzleTimeTests: XCTestCase {
@@ -24,6 +25,13 @@ class puzzleTimeTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let vg = ViewController()
+        let myView = UIView()
+        myView.center = CGPointMake(0, 0);
+        let emptySpot = CGPointMake(10, 10);
+        vg.moveViewToEmptySpot(myView, emptySpot: emptySpot)
+        XCTAssertTrue(myView.center == emptySpot)
+        
     }
     
     func testPerformanceExample() {
