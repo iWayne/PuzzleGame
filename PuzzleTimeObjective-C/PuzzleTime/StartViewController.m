@@ -20,15 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _fileSystemPrep = [NSUserDefaults standardUserDefaults];
+    self.fileSystemPrep = [NSUserDefaults standardUserDefaults];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
-    NSInteger numberPerRow = [_fileSystemPrep integerForKey:@"numberPerRow"];
+    NSInteger numberPerRow = [self.fileSystemPrep integerForKey:@"numberPerRow"];
     if (!numberPerRow) {
-        _resumeButton.enabled = NO;
+        self.resumeButton.enabled = NO;
     } else {
-        _resumeButton.enabled = YES;
+        self.resumeButton.enabled = YES;
     }
 }
 
@@ -36,9 +36,9 @@
 - (IBAction)ResumeGame {
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
     
-    gameViewController.numberPerRow = [_fileSystemPrep integerForKey:@"numberPerRow"];
-    gameViewController.curItemsArray = [NSMutableArray arrayWithArray:[_fileSystemPrep objectForKey:@"_curItemsArray"]];
-    gameViewController.origItemsArray = [NSMutableArray arrayWithArray:[_fileSystemPrep objectForKey:@"_origItemsArray"]];
+    gameViewController.numberPerRow = [self.fileSystemPrep integerForKey:@"numberPerRow"];
+    gameViewController.curItemsArray = [NSMutableArray arrayWithArray:[self.fileSystemPrep objectForKey:@"_curItemsArray"]];
+    gameViewController.origItemsArray = [NSMutableArray arrayWithArray:[self.fileSystemPrep objectForKey:@"_origItemsArray"]];
     
     //    [self presentViewController:gameViewController animated:YES completion:NULL];
     [self.navigationController pushViewController:gameViewController animated:YES];
@@ -56,13 +56,13 @@
 
 //If user cancel to import the image, use the default ones and goto Game view
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    int diffLevel = roundl([_diffSlider value]);
+    int diffLevel = roundl([self.diffSlider value]);
     GameViewController *gameViewController = [[GameViewController alloc] initWithNibName:nil bundle:nil];
     gameViewController.numberPerRow = diffLevel;
     gameViewController.imageNamePrefix = @"number";
     gameViewController.imageNamePostfix = @".jpg";
     gameViewController.hasCustomImage = NO;
-    [_fileSystemPrep removeObjectForKey:@"customImage0"];
+    [self.fileSystemPrep removeObjectForKey:@"customImage0"];
     [self.navigationController pushViewController:gameViewController animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -73,9 +73,9 @@
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
 
     //Split Images
-    int diffLevel = roundl([_diffSlider value]);
+    int diffLevel = roundl([self.diffSlider value]);
     if (image) {
-        [self splitImage:image numberPerRow:diffLevel UserDefaults:_fileSystemPrep];
+        [self splitImage:image numberPerRow:diffLevel UserDefaults:self.fileSystemPrep];
     }
     
     //Start a Puzzle game
@@ -136,13 +136,13 @@
     [sender setValue:(float)discreteValue];
     switch (discreteValue) {
         case 2:
-            _diffLabel.text = @"Easy";
+            self.diffLabel.text = @"Easy";
             break;
         case 3:
-            _diffLabel.text = @"Normal";
+            self.diffLabel.text = @"Normal";
             break;
         case 4:
-            _diffLabel.text = @"Really Hard!";
+            self.diffLabel.text = @"Really Hard!";
             break;
         default:
             break;

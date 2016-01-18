@@ -290,14 +290,14 @@
 - (void) clearHistoryData {
     self.curItemsArray = nil;
     self.origItemsArray = nil;
-    [self.fileSystemPrep removeObjectForKey:@"self.curItemsArray"];
-    [self.fileSystemPrep removeObjectForKey:@"self.origItemsArray"];
+    [self.fileSystemPrep removeObjectForKey:@"_curItemsArray"];
+    [self.fileSystemPrep removeObjectForKey:@"_origItemsArray"];
     [self.fileSystemPrep removeObjectForKey:@"numberPerRow"];
 }
 
 - (void) saveData {
-    [self.fileSystemPrep setObject:self.curItemsArray forKey:@"self.curItemsArray"];
-    [self.fileSystemPrep setObject:self.origItemsArray forKey:@"self.origItemsArray"];
+    [self.fileSystemPrep setObject:self.curItemsArray forKey:@"_curItemsArray"];
+    [self.fileSystemPrep setObject:self.origItemsArray forKey:@"_origItemsArray"];
     [self.fileSystemPrep setInteger:self.numberPerRow forKey:@"numberPerRow"];
     NSLog(@"Store the current status");
 }
